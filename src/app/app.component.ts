@@ -7,4 +7,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tuto';
+  isAuth = false;
+  added = false;
+
+  constructor() {
+    setTimeout(
+      () => {
+        this.isAuth = true;
+      }, 4000
+    );
+  }
+
+  addCart() {
+    this.added = true;
+    alert('Produit ajouter au panier !');
+    // console.log('Produit ajouter au panier !');
+  }
+
 }
