@@ -7,17 +7,28 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  productName: string = "Salade Batavia" ;
-  productDescription: string = "salade de production locale";
-  productQuantity: number = 10;
-  productUnit: string = "pc";
+  @Input() productName!: string;
+  @Input() productDescription!: string;
+  @Input() productQuantity!: number;
+  @Input() productUnit!: string;
   
   @Input()
   selectedQuantity!: number;
 
-  constructor() {
+  isAuth = false;
+  added = false;
 
-   }
+  constructor() {
+    setTimeout(
+      () => {
+        this.isAuth = true;
+      }, 4000
+    );
+  }
+  
+  getName(){
+    return this.productName;
+  }
 
   getQuantity() {
     return this.productQuantity;
@@ -31,6 +42,11 @@ export class ProductComponent implements OnInit {
     return this.productDescription;
   }
 
+  addCart() {
+    this.added = true;
+    alert('Produit ajouter au panier !');
+    // console.log('Produit ajouter au panier !');
+  }
 
   ngOnInit(): void {
   }

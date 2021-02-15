@@ -9,16 +9,21 @@
       <div class="row p-5 border border-info">
         <div class="card col-sm-12">
             <div class="card-body">
-              <div class="col-sm-1 align-self-center"><div style="width:20px;height:20px;background-color:rgb(81, 255, 0);" 
-                *ngIf="added === true"></div></div>
-              
-                <div class="col-sm-8">
-                <app-product [selectedQuantity]=1></app-product>
+              <div>Nous sommes le : {{ date | date: 'd MMMM y' }}</div>            
+                <div class="col-sm-12">
+                <app-product
+                  *ngFor="let product of products"
+                  [productName]="product.name"
+                  [productDescription]="product.description"
+                  [productQuantity]="product.quantity"
+                  [productUnit]="product.unit"                     
+                  [selectedQuantity]=1>   
+                </app-product>
                 </div>
-                <div class=" col-sm-3 align-self-center float-right">
-                  
-                <button class="btn btn-primary" [disabled]="!isAuth" (click)="addCart()" >Add to cart</button>
-                </div>      
+                <!-- <div class=" col-sm-3 align-self-center float-right"> 
+                  <button class="btn btn-primary" [disabled]="!isAuth" (click)="addCart()" >Add to cart</button>
+                </div> -->
+                      
           </div>   
       </div>
     </div>
