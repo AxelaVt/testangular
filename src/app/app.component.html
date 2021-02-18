@@ -1,31 +1,20 @@
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
+        <li routerLinkActive="active"><a routerLink="product">Produits</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}!
   </h1>
 </div>
 <div class="container p-10">
-  <h2 class="text-center p-5">Liste des Produits</h2>
-    <div class="column">
-      <div class="row p-5 border border-info">
-        <div class="card col-sm-12">
-            <div class="card-body">
-              <div>Nous sommes le : {{ date | date: 'd MMMM y' }}</div>            
-                <div class="col-sm-12">
-                <app-product
-                  *ngFor="let product of products"
-                  [productName]="product.name"
-                  [productDescription]="product.description"
-                  [productQuantity]="product.quantity"
-                  [productUnit]="product.unit"                     
-                  [selectedQuantity]=1>   
-                </app-product>
-                </div>
-                <!-- <div class=" col-sm-3 align-self-center float-right"> 
-                  <button class="btn btn-primary" [disabled]="!isAuth" (click)="addCart()" >Add to cart</button>
-                </div> -->
-                      
-          </div>   
-      </div>
-    </div>
-  </div>  
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>  
