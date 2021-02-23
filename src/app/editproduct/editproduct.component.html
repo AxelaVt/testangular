@@ -1,0 +1,51 @@
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+          <label for="name">
+            Nom du produit:
+          </label>
+          <input type="text" id="name" class="form-control" name="name" ngModel required>
+        </div>
+        <div class="form-group my-3">
+            <label for="description">
+              Description:
+            </label>
+            <input type="text" id="description" class="form-control" name="description" ngModel required>
+          </div>
+          <div class="form-group my-3">
+            <label for="quantity">
+              Quantité:
+            </label>
+            <input type="text" id="quantity" class="form-control" name="quantity" ngModel required>
+          </div>
+        <div class="form-group my-3">
+          <label for="unit">
+            Unité :
+          </label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="unit" id="unit1" value="pc" ngModel checked>
+            <label class="form-check-label" for="pièce">
+              pièce
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="unit" id="unit2" value="kg" ngModel>
+            <label class="form-check-label" for="kilogramme">
+                kilogramme
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="unit" id="unit3" value="l" ngModel>
+            <label class="form-check-label" for="litre">
+                litre
+            </label>
+          </div>
+        </div>
+        <button class="btn btn-primary"  type="submit" [disabled]="f.invalid">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+
+  

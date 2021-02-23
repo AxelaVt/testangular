@@ -1,19 +1,19 @@
 
-<div class="col-sm-12" id='product'>
+<div class="row col-sm-12" id='product'>
     <div class="col-sm-1 align-self-center center"><div style="width:20px;height:20px;background-color:rgb(81, 255, 0);" 
         *ngIf="added === true"></div></div>
-    <div class="col-sm-6">
+    <div class="col-sm-7">
         <h4 class="card-title">Produit : {{ getName() }}</h4>
         <p>Description du produit : {{ getDescription() }}</p>
         <p>Quantité disponible : {{ getQuantity() }} {{ getUnit() }} </p>
-        <img class="card-img-bottom" src="" alt="Card image">
+        <img class="card-img border" src="" alt="Card image"/>
         <input type="text" class="form-control" [(ngModel)]="selectedQuantity">
 
     </div>
     <div class="col-sm-2 center"> 
     <button [routerLink]="[productId]">Détail</button>
     </div>
-    <div class="col-sm-2 float-right center"> 
+    <div class="col-sm-2 center"> 
         <button class="btn btn-primary" (click)="addCart()">Add to cart</button>
     </div>
 </div>

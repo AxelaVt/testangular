@@ -8,6 +8,7 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductComponent implements OnInit {
 
+
   @Input()
   productName!: string;
   @Input()
@@ -24,6 +25,7 @@ export class ProductComponent implements OnInit {
 
   isAuth = false;
   added = false;
+  
 
   constructor(private productService: ProductService) {
     setTimeout(
@@ -53,6 +55,10 @@ export class ProductComponent implements OnInit {
 
   addCart() {
     this.added = true;
+    console.log(this.productId);
+    let cart = [];
+    cart.push(this.productId, this.productName, this.selectedQuantity, this.productUnit);
+    console.log(cart);
     if(this.selectedQuantity == 1){
       alert(this.selectedQuantity + ' ' + this.productUnit +'  de produit ajouté au panier !');
     }else{
@@ -61,6 +67,7 @@ export class ProductComponent implements OnInit {
     
   }
 
+  
   ngOnInit(): void {
   }
 

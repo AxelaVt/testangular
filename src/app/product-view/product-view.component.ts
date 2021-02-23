@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -6,13 +7,14 @@ import { ProductService } from '../services/product.service';
   templateUrl: './product-view.component.html',
   styleUrls: ['./product-view.component.css']
 })
-export class ProductViewComponent implements OnInit {
+export class ProductViewComponent implements OnInit, OnDestroy{
   [x: string]: any;
   isAuth = false;
   added = false;
   date = new Date();
   cart = [];
   products!: any[];
+  productSubscription!: Subscription;
 
   constructor(private productService: ProductService) {
     setTimeout(
@@ -23,10 +25,15 @@ export class ProductViewComponent implements OnInit {
   }
 
   ngOnInit() {
-  this.products = this.productService.products;
+    this.productSubscription = this.productService.productsSubject.subscribe(
+      (products: any[]) => {
+        this.products = products;
+      });
+      this.productService.emitProductSubject();
   }
 
-  goToCart() {
-    
+  ngOnDestroy() {
+    this.productSubscription.unsubscribe();
   }
+  
 }

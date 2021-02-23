@@ -16,3 +16,8 @@
     line-height: 1.33;
     border-radius: 1.563rem;
   }
+
+  li{
+    font-size: 1.5rem;
+    font-weight:bold ;
+  }

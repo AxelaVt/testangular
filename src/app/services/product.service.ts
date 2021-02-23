@@ -1,7 +1,10 @@
+import { Subject } from "rxjs/internal/Subject";
 
 export class ProductService {
 
-products = [
+  productsSubject = new Subject<any[]>();
+
+private products = [
     {
       id : 1,
       name: 'Salade Batavia',
@@ -32,18 +35,41 @@ products = [
     }
 
   ]
-
+  emitProductSubject() {
+    this.productsSubject.next(this.products.slice());
+  }
 
 getProductById(id: number) {
     const product = this.products.find(
       (productObject) => {
+        this.emitProductSubject();
         return productObject.id === id;
+        
       }
     );
      console.log(product);
+     this.emitProductSubject();
     return product;
      
-}
+  }
+
+  addProduct(name: string, description: string, quantity: number, unit: string) {
+    
+    const productObject = {
+      id: 0,
+      name: '',
+      description: '',
+      quantity: 0 ,
+      unit: ''
+    };
+    productObject.name = name;
+    productObject.description = description;
+    productObject.quantity = quantity;
+    productObject.unit = unit;
+    productObject.id = this.products[(this.products.length - 1)].id + 1;
+    this.products.push(productObject);
+    this.emitProductSubject();
+  }
 
 
 
