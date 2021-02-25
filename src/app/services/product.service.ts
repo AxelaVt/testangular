@@ -1,47 +1,24 @@
 import { Subject } from "rxjs/internal/Subject";
+import { HttpClient } from "@angular/common/http"
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class ProductService {
 
   productsSubject = new Subject<any[]>();
+  
+private products : any = [];
+  
 
-private products = [
-    {
-      id : 1,
-      name: 'Salade Batavia',
-      description:"salade produite localement",
-      quantity: 50,
-      unit:'pc',
-    },
-    {
-      id : 2,
-      name: 'Tomate bio',
-      description: 'Tomate du producteur tartenpion',
-      quantity: 10,
-      unit:'kg',
-    },
-    {
-      id : 3,
-      name:'Pomme gala',
-      description: 'Pomme à maturité, produite par mr rererer, producteur régional',
-      quantity: 20,
-      unit:'kg',
-    },
-    {
-      id : 4,
-      name:'Pâte spagetti',
-      description: 'Pâte de fabrication française avec de la farine de blé produite en France, paquet de 500g',
-      quantity: 200,
-      unit:'pc',
-    }
+  constructor(private httpClient: HttpClient) { }
 
-  ]
   emitProductSubject() {
     this.productsSubject.next(this.products.slice());
   }
 
-getProductById(id: number) {
+  getProductById(id: number) {
     const product = this.products.find(
-      (productObject) => {
+      (productObject: { id: number; }) => {
         this.emitProductSubject();
         return productObject.id === id;
         
@@ -69,6 +46,34 @@ getProductById(id: number) {
     productObject.id = this.products[(this.products.length - 1)].id + 1;
     this.products.push(productObject);
     this.emitProductSubject();
+  }
+
+  saveProductsToServer() {
+    this.httpClient
+      .put('https://testangular-4f45a-default-rtdb.europe-west1.firebasedatabase.app/products.json', this.products)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
+  getProductsFromServer() {
+    this.httpClient
+      .get<any[]>('https://testangular-4f45a-default-rtdb.europe-west1.firebasedatabase.app/products.json')
+      .subscribe(
+        (response) => {
+          this.products = response;
+          console.log(response);
+          this.emitProductSubject();
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 
 

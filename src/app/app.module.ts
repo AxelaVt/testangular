@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
@@ -17,7 +16,7 @@ import { EditproductComponent } from './editproduct/editproduct.component';
 import { UserService } from './services/user.service';
 import { UserlistComponent } from './userlist/userlist.component';
 import { NewUserComponent } from './new-user/new-user.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,8 @@ import { NewUserComponent } from './new-user/new-user.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     ProductService,

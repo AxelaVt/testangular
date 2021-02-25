@@ -8,7 +8,6 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductComponent implements OnInit {
 
-
   @Input()
   productName!: string;
   @Input()
@@ -69,6 +68,7 @@ export class ProductComponent implements OnInit {
 
   
   ngOnInit(): void {
+    
   }
 
 }

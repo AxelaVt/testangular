@@ -35,5 +35,13 @@ export class ProductViewComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.productSubscription.unsubscribe();
   }
+
+  onSave() {
+    this.productService.saveProductsToServer();
+  }
+  
+  onFetch() {
+    this.productService.getProductsFromServer();
+  }
   
 }
